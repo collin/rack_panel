@@ -1,0 +1,44 @@
+%h2 Url Base -- Object Path (ruby code)
+%ul#mappings{'data-uri' => '/rack_panel/url_map/mappings'}
+  - @mappings.each do |id, mapping|
+    = haml :mapping, :locals => {:mapping => mapping}, :layout => false
+  %li
+    %button.create{'data-method' => :post} Add New Mapping
+:javascript
+  jQuery(function() {
+    $('#mappings input').live('change', function() {
+      var data = {}, input = $(this), mapping = input.closest('li');
+      data[input.attr('name')] = input.attr('value');
+      $.ajax({
+        url: mapping.attr('data-uri'),
+        type: 'put',
+        data: data
+      });
+    });
+    
+    $('input[name=url_base]').live('dblclick', function() {
+      window.location = $(this).val();
+    });
+    
+    $('[data-method]').live('click', function() {
+      var button = $(this);
+      $.ajax({
+        type: button.attr('data-method'),
+        url: button.closest('[data-uri]').attr('data-uri'),
+        success: function(responseText) {
+          button.trigger('success', responseText);
+        },
+        failure: function(responseText) {
+          button.trigger('failure', responseText)
+        }
+      });
+    });
+    
+    $('.destroy').live('success', function(event, responseText) {
+      $(this).closest('li').remove();
+    });
+    
+    $('.create').live('success', function(event, responseText) {
+      $(this).closest('li').before(responseText);
+    });
+  });
