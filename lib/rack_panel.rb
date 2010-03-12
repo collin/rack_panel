@@ -1,9 +1,11 @@
 require 'fileutils'
-Bundler.require
-module RackPanel  
-  # require 'lib/application/application'
-  require 'lib/server/mapping'
-  require 'lib/server/server'
+require 'pathname'
+module RackPanel
+  def self.root
+    @root ||= Pathname.new(__FILE__).dirname.expand_path
+  end
+  require root+'server/mapping'
+  require root+'server/server'
   
   class << self
     attr_accessor :application
