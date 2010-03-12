@@ -1,4 +1,4 @@
-%li[mapping]{'data-uri' => url("mappings/#{mapping.id}"})
+%li[mapping]{'data-uri' => url("mappings/#{mapping.id})"}
   %input{:name => :url_base, :value => mapping.url_base.to_s}
   %input{:name => :object_path, :value => mapping.object_path.to_s}
   %button.destroy{'data-method' => :delete} Remove Mapping
