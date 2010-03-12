@@ -1,5 +1,7 @@
 require 'fileutils'
 require 'pathname'
+require 'sinatra'
+require 'haml'
 module RackPanel
   def self.root
     @root ||= Pathname.new(__FILE__).dirname.expand_path

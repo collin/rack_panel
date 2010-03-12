@@ -5,11 +5,13 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "rack_panel"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{A control panel for rack}
+    gem.description = %Q{a control panel for rack}
     gem.email = "collintmiller@gmail.com"
     gem.homepage = "http://github.com/collin/rack_panel"
     gem.authors = ["Collin Miller"]
+    gem.add_dependency "sinatra"
+    gem.add_dependency "haml"
     gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
