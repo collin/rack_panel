@@ -2,6 +2,18 @@ class RackPanel::Server < Sinatra::Base
   Mapping = RackPanel::Mapping
   set :root, File.dirname(__FILE__)
   Public = File.expand_path(File.dirname(__FILE__) + '/public')
+
+  helpers do
+     include Rack::Utils
+    def url(*path_parts)
+      [ path_prefix, path_parts ].join("/").squeeze('/')
+    end
+    alias_method :u, :url
+
+    def path_prefix
+      request.env['SCRIPT_NAME']
+    end
+  end
   
   get('/?') do
     @mappings = Mapping.all
