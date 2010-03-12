@@ -1,5 +1,5 @@
 %h2 Url Base -- Object Path (ruby code)
-%ul#mappings{'data-uri' => '/rack_panel/url_map/mappings'}
+%ul#mappings{'data-uri' => 'mappings'}
   - @mappings.each do |id, mapping|
     = haml :mapping, :locals => {:mapping => mapping}, :layout => false
   %li

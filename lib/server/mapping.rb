@@ -30,7 +30,7 @@ class RackPanel::Mapping
     unless File.exist?(config_file_path)
       FileUtils.touch(config_file_path) 
       File.open(config_file_path, 'w+') do |file|
-        file.write({Time.now.to_i.to_s => ['/rack_panel/url_map', RackPanel::Server.to_s]}.to_yaml)
+        file.write({Time.now.to_i => ['/rack_panel/url_map', RackPanel::Server.to_s]}.to_yaml)
       end
     end
     read
